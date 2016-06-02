@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+ body {
+  font-family: arial
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-vetor {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-vetor input {
+  width: 40px
+}
+
+
+}
+
+    </style>
+    <title>Estudo Fibonacci e Ordenação</title>
+</head>
+
+<body>
+    <form name="fibonacci">
+        <div class="container">
+            <h1>
+Sequência de Fibonacci
+</h1> Limite Fibonacci:
+            <input type="text" name="limit">
+            <input type="button" name="show" value="Exibir elemento na Posição" onClick="position()">
+        </div>
+
+        <div class="container">
+            <h1>
+Vetor
+</h1>
+            <div class="container-vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+                <input type="text" name="vetor">
+            </div>
+            <input type="button" name="show" value="Exibir MAIOR Elemento" onClick="notice('bigger')">
+            <input type="button" name="show" value="Exibir MENOR Elemento" onClick="notice('smaller')">
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        function notice(type) {
+            var vetor = [];
+            var i = 0;
+            for (var x = 0; x < 10; x++) {
+                var value = document.fibonacci.vetor[x].value;
+                if (value) {
+                i++;
+                vetor[i] = parseFloat(value);
+                }
+            }
+            if (vetor.length) {
+                vetor.sort(function(a, b) {
+                return (type == 'bigger') ? b - a : a - b;
+                });
+                alert(vetor[0]);
+            } else {
+                alert('Não existe valor no vetor');
+            }
+        }
+        function position() {
+            var fibo = fibonacci();
+            var position = document.fibonacci.limit.value;
+            if (position <= 9) {
+                alert('O elemento da posição ' + position + ' é: ' + fibo[position]);
+            } else {
+                alert('Valor incorreto');
+            }
+        }
+
+        function fibonacci() {
+            var y = 0;
+            var fibonacci = [];
+            for (var x = 0; x <= 9; x++) {
+                if (x <= 1) {
+                fibonacci[x] = x;
+                } else if (x === 2) {
+                fibonacci[x] = 1;
+                } else {
+                y = (fibonacci[x - 2]) + (fibonacci[x - 1]);
+                fibonacci[x] = y;
+                }
+            }
+            return fibonacci;
+        }
+    </script>
+</body>
+
+</html>
